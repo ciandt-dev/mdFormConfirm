@@ -35,7 +35,7 @@ require('angular');
 angular.module('Requisition', [
   require('angular-animate'),
   require('angular-material'),
-  require('mdFormConfirm') //Component Injection
+  require('md-form-confirm') //Component Injection
 ])
 ```
 
