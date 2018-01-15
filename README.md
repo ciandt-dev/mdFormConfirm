@@ -1,7 +1,7 @@
 # Guaranteed Less Loss =)
 Angular Material module Confirm form loss
 
-![IMG](https://i.imgur.com/SDykKl8.png)
+![IMG](https://78.media.tumblr.com/acf961d191c348eba4e6af12affa6e44/tumblr_onc52rMV351w8b5lyo4_1280.png)
 
 <p>
   <a href="https://gitter.im/miamarti/mdFormConfirm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
@@ -24,6 +24,9 @@ Download make the dependencies of mdFormConfirm and include in your project
 ```
 $ npm install md-form-confirm --save
 ```
+
+### Result
+![IMG](https://i.imgur.com/SDykKl8.png)
 
 ### Module AngularJS include
 ```
