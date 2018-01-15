@@ -43,7 +43,7 @@ angular.module('Requisition', [
 ```
 <form name="joyForm" ctrl="prettyCrazyController" obj="model" native-confirm="true" ng-submit="prettyCrazyController.save()">
   <input name="code" ng-model="prettyCrazyController.model.code">
-  ...
+  <md-button type="submit" ng-disabled="!joyForm.$valid || !joyForm.$isChanged()">SAVE</md-button>
 </form>
 ```
 
@@ -54,6 +54,7 @@ angular.module('Requisition', [
 | name  | String | false   | true      | Form Name                                             |
 | ctrl  | String | false   | true      | Controller Name                                       |
 | obj   | String | false   | true      | Name of the model object (assigned to the form)       |
+| $isChanged  | Method | true   | false      | Method assigned to the form, which can be accessed in the view, and informs if the form has been changed  |
 
 
 
