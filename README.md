@@ -54,6 +54,7 @@ angular.module('Requisition', [
 | name  | String | false   | true      | Form Name                                             |
 | ctrl  | String | false   | true      | Controller Name                                       |
 | obj   | String | false   | true      | Name of the model object (assigned to the form)       |
+| native-confirm | String | false | false | Put a validation message on the screen preventing the screen from being reloaded |
 | $isChanged  | Method | true   | false      | Method assigned to the form, which can be accessed in the view, and informs if the form has been changed  |
 
 
