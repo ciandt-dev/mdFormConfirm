@@ -1,0 +1,37 @@
+{
+  "name": "md-form-confirm",
+  "version": "1.0.0",
+  "description": "Angular Material module Confirm form loss",
+  "main": "dist/index.js",
+  "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
+  "contributors": [
+    "Lucas T. Borges <lukasborges@outlook.com>"
+  ],
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-material": "1.0.x",
+    "node-minify": "^2.4.0",
+    "replace": "^0.3.0"
+  },
+  "scripts": {
+    "build": "node app/build.js"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miamarti/mdFormConfirm.git"
+  },
+  "files": [
+    "dist/*.scss"
+  ],
+  "keywords": [
+    "Form",
+    "Material",
+    "Angular",
+    "Confirm"
+  ],
+  "license": "MIT",
+  "homepage": "http://miamarti.github.io/mdFormConfirm/"
+}
