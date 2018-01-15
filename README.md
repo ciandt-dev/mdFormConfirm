@@ -1,7 +1,7 @@
 # Guaranteed Less Loss =)
 Angular Material module Confirm form loss
 
-![IMG](https://78.media.tumblr.com/acf961d191c348eba4e6af12affa6e44/tumblr_onc52rMV351w8b5lyo4_1280.png)
+![IMG](https://coverfiles.alphacoders.com/357/35762.jpg)
 
 <p>
   <a href="https://gitter.im/miamarti/mdFormConfirm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
