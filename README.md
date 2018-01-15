@@ -36,7 +36,10 @@ angular.module('Requisition', [
 
 ## Implementation
 ```
-
+<form name="joyForm" ctrl="prettyCrazyController" obj="model" native-confirm="true" ng-submit="prettyCrazyController.save()">
+  <input name="code" ng-model="prettyCrazyController.model.code">
+  ...
+</form>
 ```
 
 ## Parameters
