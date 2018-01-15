@@ -5,7 +5,7 @@ Angular Material module Confirm form loss
   <a href="https://gitter.im/miamarti/mdFormConfirm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge" target="_blank"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
   <a href="https://gitlab.com/miamarti/mdFormConfirm" target="_blank"><img src="https://img.shields.io/badge/gitlab-mdFormConfirm-yellow.svg"></a>
   <img src="https://img.shields.io/badge/mdFormConfirm-release-green.svg">
-  <img src="https://img.shields.io/badge/version-1.1.0-blue.svg">
+  <img src="https://img.shields.io/badge/version-1.1.1-blue.svg">
   <img src="https://img.shields.io/github/license/mashape/apistatus.svg">
   <a href="https://github.com/miamarti/mdFormConfirm/tarball/master"><img src="https://img.shields.io/github/downloads/atom/atom/latest/total.svg"></a>
   <a href="http://waffle.io/miamarti/mdFormConfirm"><img alt='Stories in Ready' src='https://badge.waffle.io/miamarti/mdFormConfirm.svg?label=ready&title=Ready' height="21" /></a>
