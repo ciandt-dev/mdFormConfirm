@@ -1,7 +1,7 @@
 (function(window, angular) {
   'use strict';
 
-  angular.module('mdFormConfirm', ['ng']).directive('form', ['$timeout', '$transitions', '$mdDialog', function($timeout, $transitions, $mdDialog) {
+  angular.module('mdFormConfirm', ['ng']).directive('form', ['$timeout', '$transitions', '$mdDialog', '$q', function($timeout, $transitions, $mdDialog, $q) {
 
   'ngInject';
 
@@ -11,7 +11,8 @@
       name: '@name',
       ctrl: '@ctrl',
       obj: '@obj',
-      nativeConfirm: '@nativeConfirm'
+      nativeConfirm: '@nativeConfirm',
+      formConfirmReject: '=formConfirmReject'
     },
     link: function($scope, elmt, attr) {
 
@@ -88,15 +89,23 @@
          * @return {[type]} [description]
          */
         showPopupConfirm: function() {
-          return $mdDialog
-            .show(
-              $mdDialog
-                .confirm()
-                .title('Save changes')
-                .htmlContent('There are unsaved changes, would you like to continue?')
-                .cancel('CANCEL')
-                .ok('OK')
-            );
+          var deferred = $q.defer();
+
+          $mdDialog.show(
+            $mdDialog
+              .confirm()
+              .title('Save changes')
+              .htmlContent('There are unsaved changes, would you like to continue?')
+              .cancel('CANCEL')
+              .ok('OK')
+          ).then(function(d) {
+            deferred.resolve(d);
+          }).catch(function(e) {
+            deferred.reject(e);
+            $scope.formConfirmReject && $scope.formConfirmReject();
+          });
+
+          return deferred.promise;
         },
 
         /**
