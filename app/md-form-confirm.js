@@ -12,6 +12,7 @@
       ctrl: '@ctrl',
       obj: '@obj',
       nativeConfirm: '@nativeConfirm',
+      formInit: '=formInit',
       formConfirmReject: '=formConfirmReject'
     },
     link: function($scope, elmt, attr) {
@@ -122,7 +123,7 @@
         }
       };
 
-      $this.main();
+      $scope.formInit = $this.main.bind($this);
     }
   };
 }]);
