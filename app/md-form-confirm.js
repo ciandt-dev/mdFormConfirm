@@ -123,7 +123,11 @@
         }
       };
 
-      $scope.formInit = $this.main.bind($this);
+      if ($scope.formInit) {
+        $scope.formInit = $this.main.bind($this);
+      } else {
+        $this.main();
+      }
     }
   };
 }]);
