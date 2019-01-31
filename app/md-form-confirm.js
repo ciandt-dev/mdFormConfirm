@@ -1,7 +1,7 @@
 (function(window, angular) {
   'use strict';
 
-  angular.module('mdFormConfirm', ['ng']).directive('form', ['$timeout', '$transitions', '$mdDialog', '$q', function($timeout, $transitions, $mdDialog, $q) {
+  angular.module('mdFormConfirm', ['ng']).directive('form', ['$transitions', '$mdDialog', '$q', function($transitions, $mdDialog, $q) {
 
   'ngInject';
 
@@ -11,19 +11,17 @@
       name: '@name',
       ctrl: '@ctrl',
       obj: '@obj',
-      nativeConfirm: '@nativeConfirm',
-      formInit: '=formInit',
+      nativeConfirm: '=nativeConfirm',
+      formControl: '=formControl',
       formConfirmReject: '=formConfirmReject'
     },
     link: function($scope, elmt, attr) {
 
       var $this = {
-        enable: true,
         backup: undefined,
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * Direct module inicializer
          */
         main: function() {
           if (attr.ctrl && attr.obj) {
@@ -32,44 +30,62 @@
         },
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * Adds event listeners
          */
         addEventListener: function() {
-          $timeout($this.setBackup.bind($this), 700);
           $transitions.onStart({}, $this.eventPrevent.bind($this));
+          $scope.$watch('formControl', $this.featureSwitch.bind($this));
           $scope.$on('$destroy', $this.clearEventListener.bind($this));
-          elmt.scope()[attr.name].$isChanged = $this.isModified.bind($this);
-          elmt.scope()[attr.name].$updateChanged = $this.setBackup.bind($this);
-          if (attr.nativeConfirm && $this.enable) {
-            window.onbeforeunload = $this.showNativeAlertConfirm.bind($this);
-          }
-        },
-
-        clearEventListener: function() {
-          $this.enable = false;
-          window.onbeforeunload = undefined;
         },
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * CLears event listeners and disable feature
+         */
+        clearEventListener: function() {
+          window.removeEventListener('beforeunload', $this.showNativeAlertConfirm.bind($this));
+          $this.enable = false;
+        },
+
+        /**
+         * Toggles confirm form on or off
+         * @param  {boolean} status
+         * @return 
+         */
+        featureSwitch: function(status) {
+          if (status) {
+            $this.setBackup();
+            $this.enable = true;
+            window.addEventListener('beforeunload', $this.showNativeAlertConfirm.bind($this));
+            return;
+          }
+          $this.clearEventListener();
+        },
+
+        /**
+         * Get form model being observed
+         * @return {object|Array<any>} [description]
          */
         getData: function() {
-          return elmt.scope()[attr.ctrl][attr.obj];
+          var sampleData = angular.copy(elmt.scope()[attr.ctrl][attr.obj]);
+
+          return angular.forEach(sampleData, function(value) {
+            if (value.$$hashKey) {
+              delete value.$$hashKey;
+            }
+            return value;
+          });
         },
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * Sets backup data for comparison
          */
         setBackup: function() {
-          $this.backup = angular.copy($this.getData());
+          $this.backup = $this.getData();
         },
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * Tells if the form model got modified from the backup
+         * @return {boolean}
          */
         isModified: function() {
           if ($this.enable) {
@@ -78,16 +94,21 @@
         },
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * Tells if a native confirmation should be displayed or not
+         * @return {boolean}
          */
-        showNativeAlertConfirm: function() {
-          return $this.isModified();
+        showNativeAlertConfirm: function(event) {
+          if ($scope.nativeConfirm && $this.isModified()) {
+            event.preventDefault();
+            event.returnValue = 'Modified';
+            return true;
+          }
+          return false;
         },
 
         /**
-         * [description]
-         * @return {[type]} [description]
+         * Shows popup within application for confirmation on changes discard
+         * @return {Promise}
          */
         showPopupConfirm: function() {
           var deferred = $q.defer();
@@ -110,11 +131,8 @@
         },
 
         /**
-         * [description]
-         * @param  {[type]}   event   [description]
-         * @param  {Function} next    [description]
-         * @param  {[type]}   current [description]
-         * @return {[type]}           [description]
+         * Tells if the event should be prevented from happening based on modificated data
+         * @return {Function}
          */
         eventPrevent: function() {
           if ($this.isModified()) {
@@ -123,7 +141,7 @@
         }
       };
 
-      $scope.formInit = $this.main.bind($this);
+      $this.main();
     }
   };
 }]);
