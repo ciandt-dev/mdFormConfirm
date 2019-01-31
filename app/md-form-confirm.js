@@ -70,12 +70,17 @@
         getData: function() {
           var sampleData = angular.copy(elmt.scope()[attr.ctrl][attr.obj]);
 
-          return angular.forEach(sampleData, function(value) {
-            if (value.$$hashKey) {
-              delete value.$$hashKey;
-            }
-            return value;
-          });
+          if (sampleData.length) {
+            return angular.forEach(sampleData, function(value) {
+              if (value && value.$$hashKey) {
+                delete value.$$hashKey;
+              }
+              return value;
+            });
+          }
+          
+          delete sampleData.$$hashKey;
+          return sampleData;
         },
 
         /**
