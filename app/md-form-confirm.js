@@ -36,6 +36,8 @@
           $transitions.onStart({}, $this.eventPrevent.bind($this));
           $scope.$watch('formControl', $this.featureSwitch.bind($this));
           $scope.$on('$destroy', $this.clearEventListener.bind($this));
+          elmt.scope()[attr.name].$isChanged = $this.isModified.bind($this);
+          elmt.scope()[attr.name].$updateChanged = $this.setBackup.bind($this);
         },
 
         /**

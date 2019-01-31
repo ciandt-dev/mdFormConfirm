@@ -1,6 +1,6 @@
 {
   "name": "md-form-confirm",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Angular Material module Confirm form loss",
   "main": "dist/index.js",
   "author": "Miller Augusto S. Martins <miller.augusto@gmail.com>",
